@@ -12,3 +12,12 @@ web-build/
 
 # macOS
 .DS_Store
+/assets/fonts/Poppins/OFL.txt
+/.idea/.gitignore
+/.idea/discord.xml
+/.idea/jpa-buddy.xml
+/.idea/misc.xml
+/.idea/modules.xml
+/assets/fonts/Great_Vibes/OFL.txt
+/.idea/vcs.xml
+/.idea/WmbMobile.iml
