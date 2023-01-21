@@ -36,11 +36,12 @@ export default StyleSheet.create({
         fontWeight: 'bold'
     },
     btn: {
-        backgroundColor: 'black',
+        backgroundColor: '#d51506',
         width: '100%',
         alignItems: 'center',
-        marginTop: 10,
-        padding: 10
+        marginTop: 20,
+        padding: 10,
+        borderRadius:50
     },
     btnText: {
         color: 'white',

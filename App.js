@@ -1,14 +1,19 @@
-import {SafeAreaView, StyleSheet, StatusBar} from 'react-native';
+import {SafeAreaView, StatusBar, StyleSheet, UIManager} from 'react-native';
 import MainNavigation from "./src/navigation/MainNavigation";
-import {useEffect, useState} from "react";
-import {LoginService} from "./src/app/service/LoginService";
+import {isIos} from "./src/utils/isIos";
+import {UserNameContextProvider} from "./src/context/UserNameContext";
 
 export default function App() {
+    if (!isIos() && UIManager.setLayoutAnimationEnabledExperimental) {
+        UIManager.setLayoutAnimationEnabledExperimental(true);
+    }
     return (
-        <SafeAreaView style={styles.container}>
-            <StatusBar style="auto"/>
-            <MainNavigation/>
-        </SafeAreaView>
+        <UserNameContextProvider>
+            <SafeAreaView style={styles.container}>
+                <StatusBar style="auto"/>
+                <MainNavigation/>
+            </SafeAreaView>
+        </UserNameContextProvider>
     );
 }
 

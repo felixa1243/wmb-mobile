@@ -1,6 +1,5 @@
 import {Text, View} from "react-native";
 import {useFonts} from "expo-font";
-import {useCallback} from "react";
 
 const Logo = (props) => {
     const [isLoaded] = useFonts({

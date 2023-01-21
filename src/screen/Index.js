@@ -1,2 +1,5 @@
 export {default as Login} from './Login/Index'
 export {default as Home} from './Home/Index'
+export {default as Menu} from './Menu/Index'
+export {default as Customer} from './Customer/Index'
+export {default as Table} from './Table/Index'

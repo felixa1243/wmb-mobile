@@ -1,8 +1,7 @@
 import {NavigationContainer} from "@react-navigation/native";
-import AuthStack from "./stack/AuthStack";
 import Login from "../screen/Login/Index";
 import {createStackNavigator, TransitionPresets} from "@react-navigation/stack";
-import {Home} from "../screen/Index";
+import HomeStack from "./stack/HomeStack";
 
 const Stack = createStackNavigator()
 const MainNavigation = () => {
@@ -10,7 +9,7 @@ const MainNavigation = () => {
         <NavigationContainer>
             <Stack.Navigator screenOptions={{...TransitionPresets.ModalTransition, headerShown: false}}>
                 <Stack.Screen name={"Auth"} component={Login}/>
-                <Stack.Screen name={"Home"} component={Home}/>
+                <Stack.Screen name={"HomeStack"} component={HomeStack}/>
             </Stack.Navigator>
         </NavigationContainer>
     )

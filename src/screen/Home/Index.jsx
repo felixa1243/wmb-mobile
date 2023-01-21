@@ -1,12 +1,8 @@
-import {Text, View} from "react-native";
+import TabNavigation from "../../navigation/TabNavigation";
 
 const Index = () => {
     return (
-        <View>
-            <Text>
-                Home
-            </Text>
-        </View>
+        <TabNavigation/>
     )
 }
 export default Index
