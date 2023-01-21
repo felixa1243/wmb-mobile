@@ -14,7 +14,6 @@ export default StyleSheet.create({
         paddingVertical:30,
         borderTopStartRadius: 30,
         borderTopEndRadius: 30,
-        justifyContent: 'space-between',
         alignItems: 'center',
         flexDirection: 'column'
     },

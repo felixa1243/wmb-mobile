@@ -1,15 +1,15 @@
-import {AsyncListComponent} from "../../shared/components/Index";
 import {getMenu} from "../../app/service/MenuService";
 import ListItem from "./components/ListItem/Index";
+import {ListComponent} from "../../shared/components/ListComponent/Index";
 
-const Menu = () => {
+const Menu = (props) => {
     return (
-        <AsyncListComponent
+        <ListComponent
             service={getMenu}
             renderItem={ListItem}
             by={'name'}
             isIndexed={true}
-            header={'Menu'}
+            {...props}
         />
     )
 }

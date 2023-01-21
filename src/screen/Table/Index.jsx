@@ -1,15 +1,16 @@
-import {AsyncListComponent} from "../../shared/components/Index";
 import {getTable} from "../../app/service/TableService";
 import ListItem from "./components/Index";
+import {ListComponent} from "../../shared/components/ListComponent/Index";
 
-const Table = () => {
+const Table = (props) => {
     return (
-        <AsyncListComponent
+        <ListComponent
             service={getTable}
             renderItem={ListItem}
             by={'nomor'}
             isIndexed={false}
             header={'Table'}
+            {...props}
         />
     )
 }

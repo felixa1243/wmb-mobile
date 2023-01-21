@@ -1,5 +1,6 @@
 import {createStackNavigator} from "@react-navigation/stack";
-import {Home} from "../../screen/Index";
+import TabNavigation from "../TabNavigation";
+import {Edit} from "../../screen/Index";
 
 const Stack = createStackNavigator()
 const HomeStack = () => {
@@ -10,8 +11,11 @@ const HomeStack = () => {
         }}>
             <Stack.Screen
                 name={'Home'}
-                component={Home}
+                component={TabNavigation}
             />
+            <Stack.Screen
+                name={'edit'}
+                component={Edit}/>
         </Stack.Navigator>
     )
 }

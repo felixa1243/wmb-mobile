@@ -1,7 +1,8 @@
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 import {Customer, Menu, Table} from "../screen/Index";
 import {Icon} from '../shared/components/Index'
-
+import {TransitionPresets} from "@react-navigation/stack";
+import {options} from './TabsNavigationOption'
 const TabNavigator = createBottomTabNavigator()
 
 const TabNavigation = () => {
@@ -9,23 +10,20 @@ const TabNavigation = () => {
         name: 'Menu',
         title: 'Menu',
         component: Menu,
-        focusIcon: 'md-home',
-        icon: 'home-outline'
+        focusIcon: 'fast-food'
     }, {
         name: 'Customer',
         title: 'Customer',
         component: Customer,
-        focusIcon: 'md-person',
-        icon: 'person-outline'
+        focusIcon: 'md-person'
     }, {
         name: 'Table',
         title: 'Table',
         component: Table,
-        focusIcon: '',
-        icon: ''
+        focusIcon: 'md-list'
     }]
     return (
-        <TabNavigator.Navigator>
+        <TabNavigator.Navigator screenOptions={{...TransitionPresets.ScaleFromCenterAndroid, headerShown: false}}>
             {
                 LIST_MENUS
                     .map((item, index) => {
@@ -35,24 +33,14 @@ const TabNavigation = () => {
                                                  key={index}
                                                  options={
                                                      {
-                                                         title: item.title,
-                                                         tabBarStyle: {
-                                                             borderRadius: 50,
-                                                             marginBottom: 15,
-                                                             marginHorizontal: 10,
-                                                             height: 50,
-                                                             paddingBottom: 5,
-                                                             paddingTop: 5
-                                                         },
+                                                         ...options,
+                                                         title: item?.title,
                                                          tabBarIcon: ({focused}) => (
-                                                             <Icon name={focused ? item.focusIcon : item.icon}
-                                                                   color={focused ? '#fa1605' : 'black'}
+                                                             <Icon name={item?.focusIcon}
+                                                                   color={focused ? 'white' : '#ab291c'}
                                                              />),
-                                                         tabBarLabel: item.title,
-                                                         headerShown: false,
-                                                         tabBarActiveTintColor: '#fa1605'
+                                                         tabBarLabel: item.title
                                                      }
-
                                                  }/>
 
                         )
