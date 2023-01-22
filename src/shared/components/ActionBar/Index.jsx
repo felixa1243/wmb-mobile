@@ -11,7 +11,7 @@ const ActionBar = (props) => {
         >
             <View>
                 <Icon name={'add'} color={'white'}/>
-                <View style={{position: 'absolute', bottom: 50, right: 10}}>
+                <View style={style.actionBarBody}>
                     {props.isActive && children}
                 </View>
             </View>

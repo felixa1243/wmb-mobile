@@ -8,7 +8,6 @@ import {LoginService} from "../../app/service/LoginService";
 import {useNavigate} from "../../app/hooks/useNavigate";
 import {UserNameContext} from "../../context/UserNameContext";
 import {saveToken} from "../../utils/token";
-import {setItem} from "../../utils/asyncStorageItem";
 import Lottie from 'lottie-react-native';
 
 const Login = () => {
@@ -18,9 +17,13 @@ const Login = () => {
     const navigate = useNavigate()
     const [error, loading, Login] = useFetchMutation(LoginService, (data) => {
         saveToken(data?.data.token)
-        setItem("username", data?.data?.data?.name)
         navigate("HomeStack")
     })
+    const validate = () => {
+        if (password.length < 6 || email.length < 6) {
+            return true
+        }
+    }
     return (
         <LinearGradient
             colors={['#fa1605', '#990b00']}
@@ -44,6 +47,11 @@ const Login = () => {
                                            styles={{marginVertical: 5}}
                                     />
                                 </View>
+                                {(email?.length <6) && (
+                                    <View>
+                                        <Text style={{color: 'red'}}>email must be at least 6 character</Text>
+                                    </View>
+                                )}
                                 <View style={style.inputGroup}>
                                     <Input
                                         onChangeText={text => setPassword(text)}
@@ -52,13 +60,24 @@ const Login = () => {
                                         styles={{marginVertical: 5}}
                                     />
                                 </View>
+                                {(email?.length <6) && (
+                                    <View>
+                                        <Text style={{color: 'red'}}>email must be at least 6 character</Text>
+                                    </View>
+                                )}
                                 <Button
                                     styles={style.btn}
                                     onPress={() => {
                                         Login({email, password})
                                     }}
-                                    disabled={password.length < 6 || loading}
+                                    disabled={!password || password.length < 6}
                                 ><Text style={style.btnText}>Login</Text></Button>
+                                {(error && error.message === "Request failed with status code 401") && (
+                                    <View>
+                                        <Text style={{color: 'red'}}>Login failed: Username or password are
+                                            incorect</Text>
+                                    </View>
+                                )}
                                 <Text style={{
                                     fontWeight: 'bold',
                                     color: '#fa1605',

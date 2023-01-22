@@ -3,13 +3,23 @@ import {Card, Icon} from '../../../../shared/components/Index'
 import style from "./style";
 
 const ListItem = (props) => {
+    let handleDelete = (id) => null;
+    if(props.handleDelete){
+        handleDelete = props.handleDelete
+    }
     const icon = [{
         icon: 'md-create',
         color: 'green',
-        action: () => props.navigation.navigate('edit', {
+        action: () => props?.navigation.navigate('edit', {
             id: props.data?.item?.id
         })
-    }]
+    },
+        {
+            icon: 'md-trash',
+            color: 'red',
+            action: handleDelete(props.data?.item?.id)
+        }
+    ]
     return (
         <Card styles={style.container}>
             <View style={{width: '50%'}}>
