@@ -1,0 +1,5 @@
+export const ACTION_TYPE = {
+    CHANGE_ID: 'CHANGE_ID',
+    CHANGE_NAME: 'CHANGE_NAME',
+    CHANGE_PRICE: 'CHANGE_PRICE'
+}
