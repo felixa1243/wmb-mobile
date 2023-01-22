@@ -41,13 +41,13 @@ export const ListComponent = (props) => {
     }
     const actionBarItem = [
         {
-            text: 'Add menu', id: 1, route: 'Table', icon: 'md-fast-food'
+            text: 'Add menu', id: 1, route: 'Add menu', icon: 'md-fast-food'
         },
         {
-            text: 'Add Customer', id: 3, route: 'Customer', icon: 'md-person-add'
+            text: 'Add Customer', id: 3, route: 'Add Customer', icon: 'md-person-add'
         },
         {
-            text: 'Add table', id: 2, route: 'Menu', icon: 'md-list'
+            text: 'Add table', id: 2, route: 'Add Table', icon: 'md-list'
         }
     ]
     return (

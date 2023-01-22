@@ -1,6 +1,6 @@
 import {View} from "react-native";
 import style from "./style";
-import {Input} from "../../../../shared/components/Index";
+import {Input} from "../Index";
 
 const InputGroup = (props) => {
     return (

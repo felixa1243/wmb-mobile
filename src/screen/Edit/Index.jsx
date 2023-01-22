@@ -1,29 +1,42 @@
 import {Text, View} from "react-native";
-import {Button, Input} from "../../shared/components/Index";
+import {Button, Icon, InputGroup, Toast} from "../../shared/components/Index";
 import style from "./style";
-import InputGroup from "./components/InputGroup/Index";
 import {ACTION_TYPE} from "./constant/ACTION_TYPE";
-import {useEffect, useReducer} from "react";
+import {useEffect, useReducer, useState} from "react";
 import {reducer, state} from "./constant/Reducer";
 import useFetch from "../../app/hooks/useFetch";
 import {editMenu, getMenuById} from "../../app/service/MenuService";
 import {FORM_LIST} from "./constant/FORM_LIST";
 import useFetchMutation from "../../app/hooks/useFetchMutation";
 
+const SuccessToast = (props) => {
+    return (
+        <Toast variants={"success"}
+               active={props.active}
+               close={props.close}
+        >
+            <View style={{flexDirection: "row"}}>
+                <Icon name={"checkmark-circle-outline"} color={"white"}/><Text
+                style={{color: "white", marginLeft: 10}}>{props.text}</Text>
+            </View>
+        </Toast>
+    )
+}
+
 const Edit = (props) => {
     const {id} = props?.route.params
     const [menuProp, dispatcher] = useReducer(reducer, state)
     const [data, error, loading] = useFetch(getMenuById(id))
+    const [toastActive,setToastActive] = useState(false)
     useEffect(() => {
         dispatcher({type: ACTION_TYPE.CHANGE_ID, payload: data?.id})
         dispatcher({type: ACTION_TYPE.CHANGE_NAME, payload: data?.name})
         dispatcher({type: ACTION_TYPE.CHANGE_PRICE, payload: data?.price})
     }, [data])
     const [editErr, editLoading, mutation] = useFetchMutation(editMenu, () => {
-        console.log('Edit success')
-        props.navigation.navigate('Menu')
+        setToastActive(true)
+        setTimeout(()=>props.navigation.navigate('Menu'),500)
     })
-    console.log(data)
     return (
         <View style={style.container}>
             {
@@ -46,10 +59,14 @@ const Edit = (props) => {
                 ><Text style={style.textBtn}>Cancel</Text></Button>
                 <Button styles={style['btn-edit']}
                         onPress={() => {
-                            mutation(editMenu())
+                            mutation(editMenu(id))
                         }}
                 ><Text style={style.textBtn}>Edit menu</Text></Button>
             </View>
+            <SuccessToast active={toastActive}
+                          close={() => setToastActive(false)}
+                          text={"Success edit item"}
+            />
         </View>
     )
 }
